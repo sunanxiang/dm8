@@ -7,13 +7,14 @@ package dm
 
 import (
 	"bufio"
-	"dm/util"
 	"io"
 	"os"
 	"runtime"
 	"strconv"
 	"strings"
 	"sync"
+
+	"github.com/sunanxiang/dm8/dm/util"
 )
 
 var LogDirDef, _ = os.Getwd()
@@ -78,7 +79,7 @@ const (
 
 	StatSqlRemoveModeDef = STAT_SQL_REMOVE_LATEST // 记录sql数超过最大值时，sql淘汰方式
 
-	ClobToBytesDef = false   //Clob是否转换为bytes
+	ClobToBytesDef = false //Clob是否转换为bytes
 )
 
 var (
@@ -174,10 +175,10 @@ func load(filePath string) {
 
 		} else {
 			cfgInfo := [2]string{}
-			if index := strings.Index(line, "="); index > 0{
-				cfgInfo[0] = line[0 : index]
-				cfgInfo[1] = line[index + 1:]
-			}else{
+			if index := strings.Index(line, "="); index > 0 {
+				cfgInfo[0] = line[0:index]
+				cfgInfo[1] = line[index+1:]
+			} else {
 				continue
 			}
 			key := strings.TrimSpace(cfgInfo[0])
@@ -345,11 +346,11 @@ func SetServerGroupProperties(props *Properties, key string, value string) bool 
 	} else if key == "USER_REMAP" {
 		tmp := props.GetString(UserRemapKey, "")
 		props.Set(UserRemapKey, tmp+"("+value+")")
-	} else if key == "SERVER_OPTION"{
+	} else if key == "SERVER_OPTION" {
 		props.Set(ServerOptionKey, value)
-	}else if key == "CLOB_TO_BYTES" {
+	} else if key == "CLOB_TO_BYTES" {
 		props.Set(ClobToBytesKey, value)
-	}else {
+	} else {
 		return false
 	}
 	return true
