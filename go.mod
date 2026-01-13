@@ -1,6 +1,6 @@
 module github.com/sunanxiang/dm8
 
-go 1.24.4
+go 1.20
 
 require (
 	github.com/golang/snappy v1.0.0
